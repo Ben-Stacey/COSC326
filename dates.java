@@ -3,18 +3,33 @@ import java.util.Scanner;
 public class dates{
     int key  = 0;
 public static void main(String[]args){
-    input();
-}
-
-public static String input(){
-    Scanner scan = new Scanner(System.in);
-    String sc = scan.nextLine();
-    return sc;
+    check();
 }
 
 public check(){
     int total = 0;
-    String string = input();
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Enter a date: ");
+    String sc = scan.nextLine();
+
+    String day = "";
+    String month = "";
+    String year = "";
+
+    //find day
+    for(int i = 0; i < sc.length; i++){
+        
+    }
+
+    //find month
+    for(int i = 0; i < sc.length; i++){
+        
+    }
+
+    //find year
+    for(int i = 0; i < sc.length; i++){
+        
+    }
 
     //Check Day
     if(){
