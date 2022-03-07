@@ -1,84 +1,41 @@
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class dates{
-    int key  = 0;
-public static void main(String[]args){
-    check();
-}
 
-public check(){
-    int total = 0;
-    Scanner scan = new Scanner(System.in);
-    System.out.println("Enter a date: ");
-    String sc = scan.nextLine();
-
-    String day = "";
-    String month = "";
-    String year = "";
-
-    //find day
-    for(int i = 0; i < sc.length; i++){
-        
+    public static void main(String[]args){
+        System.out.println(isValidDate("20-01-2014"));
+        System.out.println(isValidDate("11-04-2015"));
+        System.out.println(isValidDate("32476347656435"));
     }
 
-    //find month
-    for(int i = 0; i < sc.length; i++){
-        
+    public static boolean isValidDate(String inDate) {
+        String[] dateFormats = {"dd-mm-yyyy", "0d-0m-yyyy", "dd-mm-yyyy", "d-m-yyyy", "dd-mm-yyyy", "d-m-yyyy",};
+        for(int i = 0; i < dateFormats.length; i++){
+            SimpleDateFormat dateFormatOne = new SimpleDateFormat(dateFormats[i]);
+            dateFormatOne.setLenient(false);
+            try {
+                dateFormatOne.parse(inDate.trim());
+            } catch (ParseException pe) {
+                errorCheck(error);
+            }
+            return true;
+        }
     }
 
-    //find year
-    for(int i = 0; i < sc.length; i++){
-        
-    }
+    public errorCheck(error){
+        if(error == notLeap){
 
-    //Check Day
-    if(){
-        total++;
-    }else if(){
-        total++;
-    }else if(){
-        total++;
-    }else{
-        errorCheck();
-    }
-    //Check Month
-    if(){
-        total++;
-    }else if(){
-        total++;
-    }else if(){
-        total++;
-    }else{
-        errorCheck();
-    }
-    //Check Year
-    if(){
-        total++;
-    }else if(){
-        total++;
-    }else{
-        errorCheck();
-    }
-    //Check Separator
-    if(){
-        total++;
-    }else if(){
-        total++;
-    }else if(){
-        total++;
-    }else{
-        errorCheck();
-    }
+        }else if(error == outOfRange){
 
-    //Checker
-    if(total == 4){
-        return string;
-    }else{
-        errorCheck();
+        }else if(error == invalidDay){
+
+        }else if(error == invalidYear){
+
+        }else if(error == invalidSeparator){
+
+        }else if(error == unknown){
+            System.out.println("Invalid, error unknown");
+        }
     }
-}
-
-public errorCheck(){
-
-}
 }
