@@ -10,32 +10,23 @@ public class dates{
     }
 
     public static boolean isValidDate(String inDate) {
-        String[] dateFormats = {"dd-mm-yyyy", "0d-0m-yyyy", "dd-mm-yyyy", "d-m-yyyy", "dd-mm-yyyy", "d-m-yyyy",};
+        String[] dateFormats = {"dd-mm-yyyy", "0d-mm-yyyy", "d-mm-yyyy", "0d-0m-yyyy", "dd-0m-yyyy", "d-0m-yyyy",
+            "d-m-yyyy", "0d-m-yyyy", "dd-m-yyyy", "dd-mm-yy", "0d-mm-yy", "d-mm-yy", "0d-0m-yy", "dd-0m-yy", "d-0m-yy", 
+            "d-m-yy", "0d-m-yy", "dd-m-yy", "dd/mm/yyyy", "0d/mm/yyyy", "d/mm/yyyy", "0d/0m/yyyy", "dd/0m/yyyy", "d/0m/yyyy", 
+            "d/m/yyyy", "0d/m/yyyy", "dd/m/yyyy", "dd/mm/yy", "0d/mm/yy", "d/m/yy", "0d/0m/yy", "dd/0m/yy", "d/0m/yy", "d/m/yy", "0d-m/yy", 
+            "dd/m/yy", "dd mm yyyy", "0d mm yyyy ", "d mm yyyy", "0d 0m yyyy", "dd 0m yyyy", "d 0m yyyy", 
+            "d m yyyy", "0d m yyyy", "dd m yyyy", "dd mm yy", "0d mm yy", "d mm yy", "0d 0m yy", "dd 0m yy", "d 0m yy", "d m yy", "0d m yy", 
+            "dd m yy"};
         for(int i = 0; i < dateFormats.length; i++){
-            SimpleDateFormat dateFormatOne = new SimpleDateFormat(dateFormats[i]);
-            dateFormatOne.setLenient(false);
+            SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormats[i]);
+            dateFormat.setLenient(false);
             try {
-                dateFormatOne.parse(inDate.trim());
+                dateFormat.parse(inDate.trim());
             } catch (ParseException pe) {
-                errorCheck(error);
+                System.out.println("err");
             }
             return true;
         }
-    }
-
-    public errorCheck(error){
-        if(error == notLeap){
-
-        }else if(error == outOfRange){
-
-        }else if(error == invalidDay){
-
-        }else if(error == invalidYear){
-
-        }else if(error == invalidSeparator){
-
-        }else if(error == unknown){
-            System.out.println("Invalid, error unknown");
-        }
+      return true;
     }
 }
