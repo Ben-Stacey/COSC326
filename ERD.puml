@@ -1,0 +1,48 @@
+@startuml
+
+skinparam Style StrictUML
+skinparam LineType ortho
+skinparam monochrome true
+
+Entity Moari_Student{
+* Student_ID
+--
+* First_Name
+* Second_Name
+* Phone_Number
+* Password
+* Email_Address
+Date_of_birth  
+* Iwi 
+}
+
+Entity Events{
+* Event_Number
+* Student_ID
+* Staff_ID
+--
+* Event_Name
+* Event_Date
+* Location
+* Cateogory
+* Type
+}
+
+Entity Staff{
+* Staff_ID
+--
+* First_Name
+* Surname
+* Email_Address
+* Address
+* Password
+* Staff_Email_Address
+* Phone_Number
+}
+
+'Entity Relationship
+
+Staff }-{ Events
+Events }-{ Moari_Student
+
+@enduml

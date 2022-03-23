@@ -4,10 +4,12 @@ public class date {
     public static void main(String[]args) {
         String day = "";
         String month = "";
-        String separator = "";
+        char separator = 'a';
         String year = "";
         int leap = 0;
         int counter = 0;
+        int sepErr = 0;
+        int index = 0;
 
         //read in input
         Scanner scan = new Scanner(System.in);
@@ -16,19 +18,30 @@ public class date {
         //check seperator 
         for(int i = 0; i < date.length(); i++){
             if(date.charAt(i) == '-'){
-                separator = "-";
+                separator = '-';
             }
             if(date.charAt(i) == '/'){
-                separator = "/";
+                separator = '/';
             }
             if(date.charAt(i) == ' '){
-                separator = " ";
+                separator = ' ';
+            }
+        }
+
+        //checks for the same seperator
+        for(int i = 0; i < date.length(); i++){
+            char c = date.charAt(i);
+            if(c == separator){
+                index++;
+                if(index == 1 && date.charAt(i) != separator){
+                    sepErr++;
+                }
             }
         }
 
         //sort into sections
         for(int i = 0; i < date.length(); i++){
-            if(date.charAt(i) == separator& counter == 0){
+            if(date.charAt(i) == separator & counter == 0){
                 day = date.substring(0, i - 1);
             }
             
@@ -45,7 +58,7 @@ public class date {
             }
         }
         /** 
-        //date changer
+        //changes from number to name of the month
         switch(month){
             case 1:
             month = "Jan";
@@ -84,8 +97,10 @@ public class date {
             month = "Dec";
             break;
             default:
+            month = month;
         }
 
+        //changes from lower to upper case
         switch(month){
             case "jan":
                month = "Jan";
@@ -124,19 +139,20 @@ public class date {
             month = "Dec";
             break;
             default:
-            }
+            month = month;
+        }
 
+        //changes the year into a 4 digit year
         if(year.length() == 2){
             String 20 = "20";
             year = 20 + year;
         }
 
-        //leap year
+        //checks for leap year
         if ((year % 4 == 0) && (year % 100!= 0)) || (year % 400 == 0) && month == "Feb" && Integer.parseInt(day) == 29){
             leap++;
         }
             
-
         //validation
         if(leap == 1){
             System.out.println(day + separator + month + separator + year");
@@ -144,11 +160,14 @@ public class date {
             System.out.println(day + separator + month + separator + year + "Leap year is wrong");
         }else if(Integer.parseInt(year) < 1753 && Integer.parseInt(year) > 3000){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year out of range.");
+        }else if(sepErr = 1){
+            System.out.println(day + separator + month + separator + year + " - INVALID: different seperators.");
         }else{
             //if valid
             System.out.println(day + separator + month + separator + year);
         }
         */
+
         System.out.println(day);
         System.out.println(month);
         System.out.println(year);
