@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class desert {
     float can = 20;
     static float distancePerLitre = 12;
-    static float counter = 0;
+    static float trips = 0;
     static float endDistance = 2413 * 2;
     static float newTank = 140;
+    static ArrayList<Float> list = new ArrayList<Float>();
     static float startDistance = newTank * distancePerLitre;
 
     public static void main(String[]args){
@@ -22,6 +25,12 @@ public class desert {
             return;
         }
 
+        distanceTravelled = 1/(2*trips);
+        list.add((trips - 1)/trips);
+        newTank -= distanceTravelled/distancePerLitre;
+        newTank += 1/(2*trips);
+        
+
 
         distanceTravelled += startDistance;
         startDistance = startDistance/2;
@@ -29,7 +38,7 @@ public class desert {
         System.out.println(startDistance);
 
         System.out.println("Fuel used so far " + distanceTravelled/distancePerLitre + " litres");
-        counter++;
+        trips++;
         check(distanceTravelled);
         return;
     }

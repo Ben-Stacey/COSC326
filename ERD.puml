@@ -17,7 +17,7 @@ Date_of_birth
 }
 
 Entity Events{
-* Event_Number
+* Event_ID
 * Student_ID
 * Staff_ID
 --
@@ -40,9 +40,20 @@ Entity Staff{
 * Phone_Number
 }
 
+Entity Booking{
+* Student_ID
+* Event_ID
+--
+* Event_Name
+* Event_Date
+* Location
+}
+
 'Entity Relationship
 
 Staff }-{ Events
 Events }-{ Moari_Student
+Events }--|| Booking
+
 
 @enduml
