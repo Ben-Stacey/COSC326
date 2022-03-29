@@ -1,0 +1,10 @@
+Compile - javac date.java
+Run - java date
+
+Test cases:
+1 1 1 1
+0 0 00
+4-6-92
+04/06/1992
+3 AUG 97
+12-Sep-1955
