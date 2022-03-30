@@ -1,3 +1,8 @@
+Author - Ben Stacey
+Student ID - 2157359
+
+This is a program that reads in dates and then checks it to makes sure its valid
+
 Compile - javac date.java
 Run - java date
 

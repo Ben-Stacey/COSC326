@@ -13,11 +13,15 @@ public class date {
     static boolean yearLength = false;
     static boolean valid = true;
     static int dayErr = 0;
+    static boolean dateCheck = false;
+    static int monthErr = 0;
 
+    /** Main method, this runs the program */
     public static void main(String[]args) {
         input();
     }
 
+    /** Imput method takes the stdIn date */
     public static void input(){
         dayErr = 0;
         leap = 0;
@@ -34,6 +38,7 @@ public class date {
         checkSeperator(date);
     }
 
+    /** checks and stores the seperator of the date */
     public static void checkSeperator(String date){
         for(int i = 0; i < date.length(); i++){
             if(date.charAt(i) == '-'){
@@ -59,6 +64,7 @@ public class date {
         stringSplit(date);
     }
 
+    /** splits the dates into the the day, month, year sections */
     public static void stringSplit(String date){
         for(int i = 0; i < date.length(); i++){
             int start;
@@ -75,10 +81,13 @@ public class date {
             dayErr++;
         }
 
+        if(Integer.parseInt(month) == 0){
+            monthErr++;
+        }
+
         for(int x = 0; x < date.length(); x++){
             if(date.charAt(x) == separator){
                 check++;
-                System.out.println(check);
             }
         }
 
@@ -94,16 +103,23 @@ public class date {
         validation();
     }
 
+    /** adds 20 to the start of the date if length is 2 */
     public static void plusYear(){
         year = "20" + year;
     }
 
+    /** checks the year length is 2 or 4 */
     public static void checkYearLength(){
         if(year.length() != 2 || year.length() != 4){
             yearLength = true;
         }
+
+        if(Integer.parseInt(year) > 1753 && Integer.parseInt(year) < 3000){
+            yearLength = true;
+        }
     }
 
+    /** converts the month into the required word */
     public static void monthConvert(){
         String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         if(month.length() == 3){
@@ -115,7 +131,6 @@ public class date {
         if(month.charAt(0) == '0'){
             month = month.substring(1);
         }
-        System.out.println(month);
 
         for(int x = 0; x < monthList.length; x++){
             if(numMonth - 1 == x){
@@ -126,12 +141,14 @@ public class date {
         month = month.toUpperCase();
     }
 
+    /** check if the year is a leap year */
     public static void leapYearCheck(){
         if ((Integer.parseInt(year) % 4 == 0) && (Integer.parseInt(year) % 100!= 0) || (Integer.parseInt(year) % 400 == 0) && month == "Feb" && Integer.parseInt(day) == 29){
             leap++;
         }
     }
-        
+    
+    /** does the validation and outputs the errors or if it passes */
     public static void validation(){
         if(leap == 1){
             System.out.println(day + separator + month + separator + year + " - Is a Leap year.");
@@ -142,12 +159,8 @@ public class date {
             System.out.println(day + separator + month + separator + year + " - INVALID: Day is wrong.");
             valid = false;
         }
-        if(Integer.parseInt(year) < 1753 && Integer.parseInt(year) > 3000){
+        if(yearLength){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
-            valid = false;
-        }
-        if(!yearLength){
-            System.out.println(day + separator + month + separator + year + " - INVALID: Length of year is wrong.");
             valid = false;
             
         }
@@ -161,11 +174,15 @@ public class date {
             valid = false;
             
         }
+        if(monthErr == 1){
+            System.out.println(day + separator + month + separator + year + " - INVALID: Month is wrong.");
+            valid = false;
+        }
         if(valid){
             //if valid
-            System.out.println("Valid date: " + day + separator + month + separator + year);
+            System.out.println("Valid date: " + day + " " + month + " " + year);
             
         }
-        input();
+        input(); //calls it again to keep it going continously
     }
 }

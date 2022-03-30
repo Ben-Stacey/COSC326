@@ -1,3 +1,5 @@
+import java.awt.*;
+import javax.swing.*;
 
 public class Snowflake2 extends JApplet{
 	int level = 0;

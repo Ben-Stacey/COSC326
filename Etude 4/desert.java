@@ -11,11 +11,6 @@ public class desert {
 
     public static void main(String[]args){
         float distanceTravelled = 0;
-        
-        //car holds 60 litres
-        //4 cans hold 80 litres
-        //1 can is 20 litres    
-
         check(distanceTravelled);
     }
 
@@ -25,17 +20,13 @@ public class desert {
             return;
         }
 
-        distanceTravelled = 1/(2*trips);
+        distanceTravelled = ;
         list.add((trips - 1)/trips);
         newTank -= distanceTravelled/distancePerLitre;
         newTank += 1/(2*trips);
-        
-
 
         distanceTravelled += startDistance;
         startDistance = startDistance/2;
-        System.out.println(distanceTravelled);
-        System.out.println(startDistance);
 
         System.out.println("Fuel used so far " + distanceTravelled/distancePerLitre + " litres");
         trips++;
