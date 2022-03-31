@@ -1,5 +1,6 @@
+import java.io.*;
 import java.util.Scanner;
-
+//import java.lang.*;
 public class date {
     static String day = "";
     static String month = "";
@@ -15,6 +16,7 @@ public class date {
     static int dayErr = 0;
     static boolean dateCheck = false;
     static int monthErr = 0;
+    static boolean yearRange = false;
 
     /** Main method, this runs the program */
     public static void main(String[]args) {
@@ -29,13 +31,20 @@ public class date {
         sepErr = 0;
         index = 0;
         check = 0;
-        yearLength = false;
         valid = true;
         
-        System.out.println("Enter a date:");
-        Scanner scan = new Scanner(System.in);
-        String date = scan.nextLine();
-        checkSeperator(date);
+        try{
+            File file = new File("input.txt");
+            Scanner scan = new Scanner(file);
+            while(scan.hasNextLine()){
+                System.out.println("Enter a date:");
+                String date = scan.nextLine();
+                checkSeperator(date);
+            }
+            scan.close();
+        }catch(FileNotFoundException e){
+            System.out.println("Error");
+        }
     }
 
     /** checks and stores the seperator of the date */
@@ -81,10 +90,6 @@ public class date {
             dayErr++;
         }
 
-        if(Integer.parseInt(month) == 0){
-            monthErr++;
-        }
-
         for(int x = 0; x < date.length(); x++){
             if(date.charAt(x) == separator){
                 check++;
@@ -114,8 +119,8 @@ public class date {
             yearLength = true;
         }
 
-        if(Integer.parseInt(year) > 1753 && Integer.parseInt(year) < 3000){
-            yearLength = true;
+        if(Integer.parseInt(year) < 1753 && Integer.parseInt(year) > 3000){
+            yearRange = true;
         }
     }
 
@@ -127,6 +132,10 @@ public class date {
         }
 
         int numMonth = Integer.parseInt(month);
+
+        if(numMonth == 0){
+            monthErr++;
+        }
 
         if(month.charAt(0) == '0'){
             month = month.substring(1);
@@ -153,13 +162,12 @@ public class date {
         if(leap == 1){
             System.out.println(day + separator + month + separator + year + " - Is a Leap year.");
             valid = false;
-            
         }
         if(dayErr == 1){
             System.out.println(day + separator + month + separator + year + " - INVALID: Day is wrong.");
             valid = false;
         }
-        if(yearLength){
+        if(!yearLength){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
             valid = false;
             
@@ -178,11 +186,25 @@ public class date {
             System.out.println(day + separator + month + separator + year + " - INVALID: Month is wrong.");
             valid = false;
         }
+        if(yearRange == true){
+            System.out.println(day + separator + month + separator + year + " - INVALID: Year is out of range.");
+            valid = false;
+        }
         if(valid){
             //if valid
             System.out.println("Valid date: " + day + " " + month + " " + year);
             
         }
-        input(); //calls it again to keep it going continously
+        leap = 0;
+        counter = 0;
+        sepErr = 0;
+        index = 0;
+        check = 0;
+        yearLength = false;
+        valid = true;
+        dayErr = 0;
+        dateCheck = false;
+        monthErr = 0;
+        yearRange = false;
     }
 }
