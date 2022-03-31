@@ -37,6 +37,7 @@ public class date {
             File file = new File("input.txt");
             Scanner scan = new Scanner(file);
             while(scan.hasNextLine()){
+                System.out.println("");
                 System.out.println("Enter a date:");
                 String date = scan.nextLine();
                 checkSeperator(date);
@@ -160,7 +161,7 @@ public class date {
     /** does the validation and outputs the errors or if it passes */
     public static void validation(){
         if(leap == 1){
-            System.out.println(day + separator + month + separator + year + " - Is a Leap year.");
+            System.out.println("Valid date: " + day + separator + month + separator + year + " - Is a Leap year.");
             valid = false;
         }
         if(dayErr == 1){
