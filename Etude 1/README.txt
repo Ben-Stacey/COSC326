@@ -3,6 +3,8 @@ Student ID - 2157359
 
 This is a program that reads in dates and then checks it to makes sure its valid
 
+Make sure the input.txt file is in the same folder as date.java
+
 Compile - javac date.java
 Run - java date
 
