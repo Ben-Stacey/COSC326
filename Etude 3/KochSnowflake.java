@@ -1,5 +1,5 @@
 
-public class recursiveKochSnowFlakes extends JApplet{
+public class KochSnowflake extends JApplet{
 	int level = 0;
 	public void init(){
 		String levelStr = JOptionPane.showInputDialog("Enter the depth of recursion");

@@ -16,7 +16,8 @@ public class date {
     static int dayErr = 0;
     static boolean dateCheck = false;
     static int monthErr = 0;
-    static boolean yearRange = false;
+    static boolean yearRange = true;
+    static boolean yearStart = false;
 
     /** Main method, this runs the program */
     public static void main(String[]args) {
@@ -25,14 +26,6 @@ public class date {
 
     /** Imput method takes the stdIn date */
     public static void input(){
-        dayErr = 0;
-        leap = 0;
-        counter = 0;
-        sepErr = 0;
-        index = 0;
-        check = 0;
-        valid = true;
-        
         try{
             File file = new File("input.txt");
             Scanner scan = new Scanner(file);
@@ -44,6 +37,8 @@ public class date {
             }
             scan.close();
         }catch(FileNotFoundException e){
+            System.out.println("Error");
+        }catch(NumberFormatException e){
             System.out.println("Error");
         }
     }
@@ -103,15 +98,26 @@ public class date {
             plusYear();
         }
 
+        if(day.length() == 1){
+            plusDay();
+        }
+
         checkYearLength();
         monthConvert();
         leapYearCheck();
+        checkRange();
         validation();
     }
 
     /** adds 20 to the start of the date if length is 2 */
     public static void plusYear(){
-        year = "20" + year;
+        if(Integer.parseInt(year) < 50) year = "20" + year;
+        if(Integer.parseInt(year) > 50) year = "19" + year;
+    }
+
+
+    public static void plusDay(){
+        day = "0" + day;
     }
 
     /** checks the year length is 2 or 4 */
@@ -119,10 +125,11 @@ public class date {
         if(year.length() != 2 || year.length() != 4){
             yearLength = true;
         }
+    }
 
-        if(Integer.parseInt(year) < 1753 && Integer.parseInt(year) > 3000){
-            yearRange = true;
-        }
+    public static void checkRange(){
+        if(year.charAt(0) == '0') yearStart = true;
+        if(Integer.parseInt(year) > 3000 || Integer.parseInt(year) < 1753) yearRange = false;
     }
 
     /** converts the month into the required word */
@@ -153,15 +160,15 @@ public class date {
 
     /** check if the year is a leap year */
     public static void leapYearCheck(){
-        if ((Integer.parseInt(year) % 4 == 0) && (Integer.parseInt(year) % 100!= 0) || (Integer.parseInt(year) % 400 == 0) && month == "Feb" && Integer.parseInt(day) == 29){
-            leap++;
+        if ((Integer.parseInt(year) % 4 == 0) && (Integer.parseInt(year) % 100!= 0) || (Integer.parseInt(year) % 400 == 0) && month == "Feb" || Integer.parseInt(day) == 28){
+            day = "29";
         }
     }
     
     /** does the validation and outputs the errors or if it passes */
     public static void validation(){
         if(leap == 1){
-            System.out.println("Valid date: " + day + separator + month + separator + year + " - Is a Leap year.");
+            System.out.println("Valid date: " + day + separator + month + separator + year);
             valid = false;
         }
         if(dayErr == 1){
@@ -170,8 +177,11 @@ public class date {
         }
         if(!yearLength){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
-            valid = false;
-            
+            valid = false; 
+        }
+        if(yearStart == true){
+            System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
+            valid = false; 
         }
         if(sepErr == 1){
             System.out.println(day + separator + month + separator + year + " - INVALID: Seperators are different.");
@@ -187,7 +197,7 @@ public class date {
             System.out.println(day + separator + month + separator + year + " - INVALID: Month is wrong.");
             valid = false;
         }
-        if(yearRange == true){
+        if(yearRange == false){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is out of range.");
             valid = false;
         }
@@ -206,6 +216,7 @@ public class date {
         dayErr = 0;
         dateCheck = false;
         monthErr = 0;
-        yearRange = false;
+        yearRange = true;
+        yearStart = false;
     }
 }
