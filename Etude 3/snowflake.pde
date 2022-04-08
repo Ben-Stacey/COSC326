@@ -1,17 +1,13 @@
-// Coding Challenge 129: Koch Snowflake
-// Daniel Shiffman
-// https://thecodingtrain.com/CodingChallenges/129-koch-snowflake.html
-// https://youtu.be/X8bXDKqMsXE
-// https://editor.p5js.org/codingtrain/sketches/SJHcVCAgN
-
 ArrayList<Segment> segments;
 
+//adds segments to the arraylist
 void addAll(Segment[] arr, ArrayList<Segment> list) {
   for (Segment s : arr) {
     list.add(s);
   }
 }
 
+//sets up the orginals triangle
 void setup() {
   size(600, 800);
   segments = new ArrayList<Segment>();
@@ -28,10 +24,9 @@ void setup() {
   segments.add(s1);
   segments.add(s2);
   segments.add(s3);
-
-  //println(children);
 }
 
+//everytime the mouse is clicked the order increases by 1
 void mousePressed() {
   ArrayList<Segment> nextGeneration = new ArrayList<Segment>();
 
@@ -42,7 +37,7 @@ void mousePressed() {
   segments = nextGeneration;
 }
 
-
+//draws the segments
 void draw() {
   background(0);
   translate(0, 100);
