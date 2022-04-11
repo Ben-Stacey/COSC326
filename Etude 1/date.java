@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
-//import java.lang.*;
+
 public class date {
     static String day = "";
     static String month = "";
@@ -13,11 +13,10 @@ public class date {
     static int check = 0;
     static boolean yearLength = false;
     static boolean valid = true;
-    static int dayErr = 0;
+    static boolean dayErr = false;
     static boolean dateCheck = false;
-    static int monthErr = 0;
+    static boolean monthErr = false;
     static boolean yearRange = true;
-    static boolean yearStart = false;
 
     /** Main method, this runs the program */
     public static void main(String[]args) {
@@ -27,20 +26,24 @@ public class date {
     /** Imput method takes the stdIn date */
     public static void input(){
         try{
-            File file = new File("input.txt");
-            Scanner scan = new Scanner(file);
-            while(scan.hasNextLine()){
+           // File file = new File("input.txt");
+            Scanner scan = new Scanner(System.in);
+            //while(scan.hasNextLine()){
                 System.out.println("");
                 System.out.println("Enter a date:");
                 String date = scan.nextLine();
                 checkSeperator(date);
-            }
+            //}
+            /** 
             scan.close();
         }catch(FileNotFoundException e){
-            System.out.println("Error");
+            System.out.println("File not found");
+            **/
         }catch(NumberFormatException e){
-            System.out.println("Error");
+            System.out.println("Number format exception");
+            input();
         }
+        
     }
 
     /** checks and stores the seperator of the date */
@@ -83,7 +86,7 @@ public class date {
         }
 
         if(Integer.parseInt(day) == 0 && Integer.parseInt(day) < 31){
-            dayErr++;
+            dayErr = true;
         }
 
         for(int x = 0; x < date.length(); x++){
@@ -102,6 +105,7 @@ public class date {
             plusDay();
         }
 
+        negCheck();
         checkYearLength();
         monthConvert();
         leapYearCheck();
@@ -109,13 +113,26 @@ public class date {
         validation();
     }
 
-    /** adds 20 to the start of the date if length is 2 */
-    public static void plusYear(){
-        if(Integer.parseInt(year) < 50) year = "20" + year;
-        if(Integer.parseInt(year) > 50) year = "19" + year;
+    public static void negCheck(){
+        if(day.charAt(0) == '-'){
+            dayErr = true;
+        }else if(year.charAt(0) == '-'){
+            yearLength = false;
+        }else if(month.charAt(0) == '-'){
+            monthErr = true;
+        }
     }
 
+    /** adds 20 to the start of the date if length is 2 */
+    public static void plusYear(){
+        if(Integer.parseInt(year) <= 50){
+            year = "20" + year;
+        }else if(Integer.parseInt(year) > 50){
+            year = "19" + year;
+        }
+    }
 
+    /**Adds the 0 to the start of a day if it is in format d */
     public static void plusDay(){
         day = "0" + day;
     }
@@ -127,22 +144,25 @@ public class date {
         }
     }
 
+    /**checks the year is within the correct range */
     public static void checkRange(){
-        if(year.charAt(0) == '0') yearStart = true;
         if(Integer.parseInt(year) > 3000 || Integer.parseInt(year) < 1753) yearRange = false;
     }
 
     /** converts the month into the required word */
     public static void monthConvert(){
         String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        if(month.length() == 3){
+    
+        if(month.length() >= 3 && month.charAt(0) == '0'){
+            month = month.substring(1,month.length());
+        }else if(month.length() == 3){
             return; 
         }
 
         int numMonth = Integer.parseInt(month);
 
         if(numMonth == 0){
-            monthErr++;
+            monthErr = true;
         }
 
         if(month.charAt(0) == '0'){
@@ -171,15 +191,11 @@ public class date {
             System.out.println("Valid date: " + day + separator + month + separator + year);
             valid = false;
         }
-        if(dayErr == 1){
+        if(dayErr == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Day is wrong.");
             valid = false;
         }
         if(!yearLength){
-            System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
-            valid = false; 
-        }
-        if(yearStart == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
             valid = false; 
         }
@@ -193,7 +209,7 @@ public class date {
             valid = false;
             
         }
-        if(monthErr == 1){
+        if(monthErr == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Month is wrong.");
             valid = false;
         }
@@ -213,10 +229,11 @@ public class date {
         check = 0;
         yearLength = false;
         valid = true;
-        dayErr = 0;
+        dayErr = false;
         dateCheck = false;
-        monthErr = 0;
+        monthErr = false;
         yearRange = true;
-        yearStart = false;
+        System.out.println("");
+        input();
     }
 }

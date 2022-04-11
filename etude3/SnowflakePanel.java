@@ -4,55 +4,99 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class SnowflakePanel extends JPanel{
-	private JLabel inputLabel;
-	private JTextField order;
-	private DrawingPanel drawPanel;
-	private JPanel controlPanel;
-	private JButton go;
-	private ArrayList<String> segment = new ArrayList<String>();
+	private JLabel label;
+	private JTextField input;
+	private JButton push;
+	private ArrayList<Segment> segments;
+	private DrawPanel drawPanel = new DrawPanel();
 
 	public SnowflakePanel(){
-		ArrayList<String> segment = new ArrayList<String>();
-		controlPanel = new JPanel();
+		label = new JLabel("Enter Order Number: ");
+		input = new JTextField(2);
+		push = new JButton("GO!");
 
-		inputLabel = new JLabel("Enter Order Number: ");
-		order = new JTextField(5);
+		push.addActionListener(new ButtonListener());
 
-		DrawingPanel drawingPanel = new DrawingPanel();
-		controlPanel.setPreferredSize(new Dimension(200, 400));
+		add(push);
+		add(label);
+		add(input);
+		add(drawPanel);
 
-		JButton go = new JButton("GO!");
-		ButtonListener listener = new ButtonListener();
-		go.addActionListener(listener);
-		controlPanel.add(go);
-
-		controlPanel.add(inputLabel);
-		controlPanel.add(order);
-
-		add(controlPanel);
-		add(drawingPanel);
+		setBackground(Color.white);
+		setPreferredSize(new Dimension(800, 900));
 	}
 
-	private class DrawingPanel extends JPanel{
-		public DrawingPanel(){
-			setBackground(Color.white);
-			setPreferredSize(new Dimension(400, 400));
-		}
-
-		public void paintComponenet(Graphics g){
-			super.paintComponent(g);
-			g.setColor(Color.black);
-			for(String s: segment){
-				s.display(g);
-			}
+	public void addAll(Segment[] arr, ArrayList<Segment> list){
+		for(Segment s: arr){
+			list.add(s);
 		}
 	}
 
 	private class ButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			if(e.getSource() == "GO!"){
-				segment.add(order.getText());
+		public void actionPerformed(ActionEvent event){
+			if(input.getText() == null){
+				return;
+			}else{
+				int x = 0;
+				try{
+					x = Integer.parseInt(input.getText());
+				}catch(Exception e){
+					System.out.println("Incorrect input");
+					return;
+				}
+
+				DrawPanel draw = new DrawPanel();
+
+				for(int i = 0; i < x; i++){
+					ArrayList<Segment> nextInteraction = new ArrayList<Segment>();
+
+					for(Segment s : segments){
+						Segment[] children = s.create();
+						addAll(children, nextInteraction);
+					}
+					segments = nextInteraction;
+				}
 			}
 		} 
+	}
+
+	private class DrawPanel extends JPanel{
+		public DrawPanel() {
+			setPreferredSize(new Dimension(800, 900));
+			setBackground(Color.white);
+
+			segments = new ArrayList<Segment>();
+
+			double ax = 100;
+			double ay = 700;
+			double bx = 700;
+			double by = 700;
+
+			double length = bx - ax;
+			double h = -length * Math.sqrt(3) / 2;
+
+			double cx = 400;
+			double cy = 700 + h;
+
+			Segment s1 = new Segment(ax, ay, bx, by);
+			Segment s2 = new Segment(bx, by, cx, cy);
+			Segment s3 = new Segment(cx, cy, ax, ay);
+
+			segments.add(s1);
+			segments.add(s2);
+			segments.add(s3);
+		}
+
+		public void paintComponent(Graphics g){
+			super.paintComponent(g);
+			g.setColor(Color.black);
+			g.translate(0, -100);
+
+			for(Segment s : segments){
+				s.draw(g);
+			}
+
+			repaint();
+		}
 	}
 }
