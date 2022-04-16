@@ -1,8 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
+/**
+ * Ben Stacey
+ * this draws the snowflake on the panel
+ */
 public class SnowflakePanel extends JPanel{
 	private JLabel label;
 	private JTextField input;
@@ -10,59 +14,34 @@ public class SnowflakePanel extends JPanel{
 	private ArrayList<Segment> segments;
 	private DrawPanel drawPanel = new DrawPanel();
 
+	/** constructor */
 	public SnowflakePanel(){
-		label = new JLabel("Enter Order Number: ");
+		label = new JLabel("Snowflake order: ");
 		input = new JTextField(2);
-		push = new JButton("GO!");
-
+		push = new JButton("Start");
 		push.addActionListener(new ButtonListener());
 
-		add(push);
 		add(label);
 		add(input);
+		add(push);
 		add(drawPanel);
 
 		setBackground(Color.white);
 		setPreferredSize(new Dimension(800, 900));
 	}
 
-	public void addAll(Segment[] arr, ArrayList<Segment> list){
-		for(Segment s: arr){
+	/** adds the segments to the arraylist */
+	public void snowFlakeConstruct(Segment[] arr, ArrayList<Segment> list){
+		for (Segment s: arr){
 			list.add(s);
 		}
 	}
 
-	private class ButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event){
-			if(input.getText() == null){
-				return;
-			}else{
-				int x = 0;
-				try{
-					x = Integer.parseInt(input.getText());
-				}catch(Exception e){
-					System.out.println("Incorrect input");
-					return;
-				}
-
-				DrawPanel draw = new DrawPanel();
-
-				for(int i = 0; i < x; i++){
-					ArrayList<Segment> nextInteraction = new ArrayList<Segment>();
-
-					for(Segment s : segments){
-						Segment[] children = s.create();
-						addAll(children, nextInteraction);
-					}
-					segments = nextInteraction;
-				}
-			}
-		} 
-	}
-
-	private class DrawPanel extends JPanel{
+	/** inner class for handling the drawing panel. The drawing panel is where the snowflake is drawn*/
+	private class DrawPanel extends JPanel {
+		/**constuctor*/
 		public DrawPanel() {
-			setPreferredSize(new Dimension(800, 900));
+			setPreferredSize(new Dimension(800, 800));
 			setBackground(Color.white);
 
 			segments = new ArrayList<Segment>();
@@ -87,16 +66,47 @@ public class SnowflakePanel extends JPanel{
 			segments.add(s3);
 		}
 
-		public void paintComponent(Graphics g){
+		/** paint component method that applies the graphics to the panel*/
+		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.setColor(Color.black);
 			g.translate(0, -100);
 
-			for(Segment s : segments){
-				s.draw(g);
+			for (Segment s : segments) {
+				s.drawLine(g);
 			}
 
 			repaint();
+		}
+	}
+
+	/** Inner class that deals with the button click*/
+	private class ButtonListener implements ActionListener{
+		/** when a button is clicked the actionPerformed method handles it*/
+		public void actionPerformed(ActionEvent event){
+			if (input.getText() == null){
+				return;
+			}else{
+				int x = 0;
+				try{
+					x = Integer.parseInt(input.getText());
+				}catch(Exception e){
+					System.out.println("Wrong input");
+					return;
+				}
+
+				DrawPanel draw = new DrawPanel();
+
+				for (int i = 0; i < x; i++){
+					ArrayList<Segment> nextIteration = new ArrayList<Segment>();
+
+					for (Segment s : segments){
+						Segment[] children = s.create();
+						snowFlakeConstruct(children, nextIteration);
+					}
+					segments = nextIteration;
+				}
+			}
 		}
 	}
 }

@@ -1,21 +1,28 @@
-import java.util.ArrayList;
-
 public class desert {
     static int x = 0;
     static int c = 1680;
-    static int d = 2413;
+    static int d = 4826;
+    static int frac = 2;
+    static int count = 26;
+    static int tank = 0;
 
     public static void main(String[]args){
-        if(d <= c){
-            System.out.println("Can do it without stops");
-            return;
-        }
-        if(d > c){
-
+        while(x < d){
+            trip();
         }
     }
 
-    public static trip(){
-        
+    public static void trip(){
+        if(c / frac > d){
+            d -= d;
+        }else{
+            d -= c / frac;
+        }
+        count--;
+        System.out.println("Step: " + count);
+        System.out.println("Distance of stop: " + d);
+        System.out.println("Current denomenator: " + frac);
+        frac += 1;
+        System.out.println("");
     }
 }

@@ -1,5 +1,10 @@
 import javax.swing.JFrame;
 
+/**
+ * Ben Stacey
+ *
+ * main class for making the snowflake
+ */
 public class Snowflake{
 	public static void main(String[]args){
 		JFrame frame = new JFrame("Snowflake");

@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+
 public class date {
     static String day = "";
     static String month = "";
@@ -12,11 +14,13 @@ public class date {
     static int index = 0;
     static int check = 0;
     static boolean yearLength = false;
+    static boolean leapY = false;
     static boolean valid = true;
     static boolean dayErr = false;
     static boolean dateCheck = false;
     static boolean monthErr = false;
     static boolean yearRange = true;
+    static boolean sep = false;
 
     /** Main method, this runs the program */
     public static void main(String[]args) {
@@ -42,8 +46,10 @@ public class date {
         }catch(NumberFormatException e){
             System.out.println("Number format exception");
             input();
+        }catch(StringIndexOutOfBoundsException e){
+            System.out.println("Index out of bounds");
+            input();
         }
-        
     }
 
     /** checks and stores the seperator of the date */
@@ -58,6 +64,14 @@ public class date {
             if(date.charAt(i) == ' '){
                 separator = ' ';
             }
+        }
+
+        try{
+            if(date.charAt(date.length() - 1) == '-' || date.charAt(date.length() - 1) == '/' || date.charAt(date.length() - 1) == ' '){
+                sep = true;
+            }
+        }catch(StringIndexOutOfBoundsException e){
+            System.out.println("Index out of bounds");
         }
 
         for(int i = 0; i < date.length(); i++){
@@ -108,8 +122,14 @@ public class date {
         negCheck();
         checkYearLength();
         monthConvert();
-        leapYearCheck();
         checkRange();
+
+        int dayx = Integer.parseInt(day);
+        if(dayx == 29 && month.equals("FEB")){
+            if(!leapYearCheck()){
+                leapY = true;
+            }
+        }
         validation();
     }
 
@@ -154,7 +174,7 @@ public class date {
         String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     
         if(month.length() >= 3 && month.charAt(0) == '0'){
-            month = month.substring(1,month.length());
+            monthErr = true;
         }else if(month.length() == 3){
             return; 
         }
@@ -179,10 +199,13 @@ public class date {
     }
 
     /** check if the year is a leap year */
-    public static void leapYearCheck(){
-        if ((Integer.parseInt(year) % 4 == 0) && (Integer.parseInt(year) % 100!= 0) || (Integer.parseInt(year) % 400 == 0) && month == "Feb" || Integer.parseInt(day) == 28){
-            day = "29";
+    public static boolean leapYearCheck(){
+        if(Integer.parseInt(year) % 100 == 0){
+            if(Integer.parseInt(year) % 400 == 0) return true;
+        }else{
+            if(Integer.parseInt(year) % 4 == 0) return true;
         }
+        return false;
     }
     
     /** does the validation and outputs the errors or if it passes */
@@ -199,8 +222,12 @@ public class date {
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
             valid = false; 
         }
-        if(sepErr == 1){
-            System.out.println(day + separator + month + separator + year + " - INVALID: Seperators are different.");
+        if(leapY){
+            System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
+            valid = false; 
+        }
+        if(sepErr == 1 || sep == true){
+            System.out.println(day + separator + month + separator + year + " - INVALID: Seperators are wrong.");
             valid = false;
             
         }
@@ -233,6 +260,7 @@ public class date {
         dateCheck = false;
         monthErr = false;
         yearRange = true;
+        leapY = false;
         System.out.println("");
         input();
     }
