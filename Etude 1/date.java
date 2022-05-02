@@ -1,16 +1,13 @@
-import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
-
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 public class date {
     static String day = "";
     static String month = "";
     static char separator = 'a';
     static String year = "";
-    static int leap = 0;
-    static int counter = 0;
     static int sepErr = 0;
+    static int counter = 0;
     static int index = 0;
     static int check = 0;
     static boolean yearLength = false;
@@ -21,6 +18,8 @@ public class date {
     static boolean monthErr = false;
     static boolean yearRange = true;
     static boolean sep = false;
+    static ArrayList<String> dates = new ArrayList<String>();
+    static String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     /** Main method, this runs the program */
     public static void main(String[]args) {
@@ -29,27 +28,49 @@ public class date {
 
     /** Imput method takes the stdIn date */
     public static void input(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("");
+        System.out.println("Enter a date:");
         try{
-           // File file = new File("input.txt");
-            Scanner scan = new Scanner(System.in);
-            //while(scan.hasNextLine()){
-                System.out.println("");
-                System.out.println("Enter a date:");
+            while(scan.hasNextLine()){
                 String date = scan.nextLine();
-                checkSeperator(date);
-            //}
-            /** 
-            scan.close();
-        }catch(FileNotFoundException e){
-            System.out.println("File not found");
-            **/
+                dates.add(date);
+                counter++;
+            }
         }catch(NumberFormatException e){
-            System.out.println("Number format exception");
+            System.out.println("INVALID but unknown");
+            reset();
             input();
         }catch(StringIndexOutOfBoundsException e){
-            System.out.println("Index out of bounds");
+            System.out.println("INVALID but unknown");
+            reset();
             input();
         }
+        start();
+    }
+
+    /** starts the program */
+    public static void start(){
+        reset();
+        for(int i = 0; i < counter; i++){
+            reset();
+            checkSeperator(dates.get(i));
+        }
+    }
+
+    /** resets the variables for each time */
+    public static void reset(){
+        sepErr = 0;
+        index = 0;
+        check = 0;
+        yearLength = false;
+        valid = true;
+        dayErr = false;
+        dateCheck = false;
+        monthErr = false;
+        yearRange = true;
+        leapY = false;
+        sep = false;
     }
 
     /** checks and stores the seperator of the date */
@@ -71,7 +92,7 @@ public class date {
                 sep = true;
             }
         }catch(StringIndexOutOfBoundsException e){
-            System.out.println("Index out of bounds");
+            System.out.println("INVALID but unknown");
         }
 
         for(int i = 0; i < date.length(); i++){
@@ -119,9 +140,10 @@ public class date {
             plusDay();
         }
 
+        dayCheck();
         negCheck();
         checkYearLength();
-        monthConvert();
+        monthValid();
         checkRange();
 
         int dayx = Integer.parseInt(day);
@@ -133,6 +155,7 @@ public class date {
         validation();
     }
 
+    /** checks for negatives in the string*/
     public static void negCheck(){
         if(day.charAt(0) == '-'){
             dayErr = true;
@@ -164,38 +187,89 @@ public class date {
         }
     }
 
+    /** checks day constrainst */
+    public static void dayCheck(){
+        if(day.length() > 2){
+            dayErr = true;
+        }
+
+        if(!(Integer.parseInt(day) < 31 && Integer.parseInt(day) > 0)){
+            dayErr = true;
+        }
+    }
+
     /**checks the year is within the correct range */
     public static void checkRange(){
         if(Integer.parseInt(year) > 3000 || Integer.parseInt(year) < 1753) yearRange = false;
     }
 
-    /** converts the month into the required word */
-    public static void monthConvert(){
-        String[] monthList = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    
-        if(month.length() >= 3 && month.charAt(0) == '0'){
+    /** checks if the month is a number */
+    public static boolean isNumeric(String month) {
+        if (month == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(month);
+        } catch (NumberFormatException e) {
+            return false;
+        }catch (StringIndexOutOfBoundsException e){
+            return false;
+        }
+        return true;
+    }
+
+    public static void monthValid(){
+        if(monthCheck(month)){
+            monthErr = false;
+        }else if(!monthCheck(month)){
             monthErr = true;
-        }else if(month.length() == 3){
-            return; 
         }
+    }
 
-        int numMonth = Integer.parseInt(month);
-
-        if(numMonth == 0){
-            monthErr = true;
-        }
-
-        if(month.charAt(0) == '0'){
-            month = month.substring(1);
-        }
-
-        for(int x = 0; x < monthList.length; x++){
-            if(numMonth - 1 == x){
-                month = monthList[x];
+    /** checks if the month is the correct string */
+    public static Boolean monthCheck(String month){
+        for(int i = 0; i < monthList.length; i++){
+            String low = monthList[i].toLowerCase();
+            String high = monthList[i].toUpperCase();
+            if(high.equals(month) || monthList[i].equals(month) || low.equals(month)){
+                month = month.toUpperCase();
+                return true;
+            }else if(isNumeric(month)){
+                monthConvert();
+                return true;
             }
         }
+        return false;
+    }
 
-        month = month.toUpperCase();
+    /** converts numbers to the word */
+    public static void monthConvert(){
+        try{
+            int numMonth = Integer.parseInt(month);
+
+            if(numMonth == 0){
+                monthErr = true;
+            }
+
+            if(!(numMonth <= 12 && numMonth >= 1)){
+                monthErr = true;
+            }
+
+            if(month.charAt(0) == '0'){
+                month = month.substring(1);
+            }
+    
+            for(int x = 0; x < monthList.length; x++){
+                if(numMonth - 1 == x){
+                    month = monthList[x];
+                }
+            }
+
+            month = month.toUpperCase(); 
+
+        }catch(NumberFormatException e){
+            System.out.println("INVALID but unknown");
+        }               
     }
 
     /** check if the year is a leap year */
@@ -210,10 +284,6 @@ public class date {
     
     /** does the validation and outputs the errors or if it passes */
     public static void validation(){
-        if(leap == 1){
-            System.out.println("Valid date: " + day + separator + month + separator + year);
-            valid = false;
-        }
         if(dayErr == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Day is wrong.");
             valid = false;
@@ -229,12 +299,10 @@ public class date {
         if(sepErr == 1 || sep == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Seperators are wrong.");
             valid = false;
-            
         }
         if(check > 2){
             System.out.println(day + separator + month + separator + year + " - INVALID: More than 2 seperators.");
             valid = false;
-            
         }
         if(monthErr == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Month is wrong.");
@@ -247,21 +315,7 @@ public class date {
         if(valid){
             //if valid
             System.out.println("Valid date: " + day + " " + month + " " + year);
-            
         }
-        leap = 0;
-        counter = 0;
-        sepErr = 0;
-        index = 0;
-        check = 0;
-        yearLength = false;
-        valid = true;
-        dayErr = false;
-        dateCheck = false;
-        monthErr = false;
-        yearRange = true;
-        leapY = false;
         System.out.println("");
-        input();
     }
 }

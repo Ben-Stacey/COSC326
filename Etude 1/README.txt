@@ -3,8 +3,13 @@ Student ID - 2157359
 
 This is a program that reads in dates and then checks it to makes sure its valid
 
-Compile - javac date.java
-Run - java date
+How to Run:
+1. Compile - javac date.java
+2. Run - java date
+3. Enter in the dates you want to check (mutliple enteries is accepted)
+4. Click enter after the last date is entered
+5. Click control and then d (If on Mac unsure about windows)
+
 
 Test cases:
 1 1 1 1
@@ -29,4 +34,8 @@ Test cases:
 11 -11 2000
 11 11 -2000
 11 11 11 11
+001 01 2000
+5745497 1 2000
+1 15 2000
+1 aaa 2000
 hello
