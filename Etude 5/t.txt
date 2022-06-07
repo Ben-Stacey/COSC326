@@ -1,0 +1,8 @@
+I will go
+We (2 excl) are going
+
+You (1 incl) will go
+You (4 incl) went
+You (4 incl) are making
+They (4 excl) will see
+We (4 excl) read

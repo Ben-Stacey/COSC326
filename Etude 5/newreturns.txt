@@ -1,0 +1,241 @@
+Enter a sentence: 
+Ka haere au
+Ka haere māua
+Ka haere mātou
+Ka haere tāua
+Ka haere tātou
+Ka haere rāua
+Ka haere rātou
+Ka haere kōrua
+Ka haere koutou
+Ka haere koe
+Kei te haere au
+Kei te haere māua
+Kei te haere mātou
+Kei te haere tāua
+Kei te haere tātou
+Kei te haere rāua
+Kei te haere rātou
+Kei te haere koe
+Kei te haere kōrua
+Kei te haere koutou
+I haere au
+I haere māua
+I haere mātou
+I haere tāua
+I haere tātou
+I haere rāua
+I haere rātou
+I haere koe
+I haere kōrua
+I haere koutou
+Ka hanga au
+Ka hanga māua
+Ka hanga mātou
+Ka hanga tāua
+Ka hanga tātou
+Ka hanga rāua
+Ka hanga rātou
+Ka hanga koe
+Ka hanga kōrua
+Ka hanga koutou
+Kei te hanga au
+Kei te hanga māua
+Kei te hanga mātou
+Kei te hanga tāua
+Kei te hanga tātou
+Kei te hanga rāua
+Kei te hanga rātou
+Kei te hanga koe
+Kei te hanga kōrua
+Kei te hanga koutou
+I hanga au
+I hanga māua
+I hanga mātou
+I hanga tāua
+I hanga tātou
+I hanga rāua
+I hanga rātou
+I hanga koe
+I hanga kōrua
+I hanga koutou
+Ka kite au
+Ka kite māua
+Ka kite mātou
+Ka kite tāua
+Ka kite tātou
+Ka kite rāua
+Ka kite rātou
+Ka kite koe
+Ka kite kōrua
+Ka kite koutou
+Kei te kite au
+Kei te kite māua
+Kei te kite mātou
+Kei te kite tāua
+Kei te kite tātou
+Kei te kite rāua
+Kei te kite rātou
+Kei te kite koe
+Kei te kite kōrua
+Kei te kite koutou
+I kite au
+I kite māua
+I kite mātou
+I kite tāua
+I kite tātou
+I kite rāua
+I kite rātou
+I kite koe
+I kite kōrua
+I kite koutou
+I hiahia au
+I hiahia māua
+I hiahia mātou
+I hiahia tāua
+I hiahia tātou
+I hiahia rāua
+I hiahia rātou
+I hiahia koe
+I hiahia kōrua
+I hiahia koutou
+Kei te hiahia au
+Kei te hiahia māua
+Kei te hiahia mātou
+Kei te hiahia tāua
+Kei te hiahia tātou
+Kei te hiahia rāua
+Kei te hiahia rātou
+Kei te hiahia koe
+Kei te hiahia kōrua
+Kei te hiahia koutou
+Ka hiahia au
+Ka hiahia māua
+Ka hiahia mātou
+Ka hiahia tāua
+Ka hiahia tātou
+Ka hiahia rāua
+Ka hiahia rātou
+Ka hiahia koe
+Ka hiahia kōrua
+Ka hiahia koutou
+I karanga au
+I karanga māua
+I karanga mātou
+I karanga tāua
+I karanga tātou
+I karanga rāua
+I karanga rātou
+I karanga koe
+I karanga kōrua
+I karanga koutou
+Kei te karanga au
+Kei te karanga māua
+Kei te karanga mātou
+Kei te karanga tāua
+Kei te karanga tātou
+Kei te karanga rāua
+Kei te karanga rātou
+Kei te karanga koe
+Kei te karanga kōrua
+Kei te karanga koutou
+Ka karanga au
+Ka karanga māua
+Ka karanga mātou
+Ka karanga tāua
+Ka karanga tātou
+Ka karanga rāua
+Ka karanga rātou
+Ka karanga koe
+Ka karanga kōrua
+Ka karanga koutou
+I pātai au
+I pātai māua
+I pātai mātou
+I pātai tāua
+I pātai tātou
+I pātai rāua
+I pātai rātou
+I pātai koe
+I pātai kōrua
+I pātai koutou
+Kei te pātai au
+Kei te pātai māua
+Kei te pātai mātou
+Kei te pātai tāua
+Kei te pātai tātou
+Kei te pātai rāua
+Kei te pātai rātou
+Kei te pātai koe
+Kei te pātai kōrua
+Kei te pātai koutou
+Ka pātai au
+Ka pātai māua
+Ka pātai mātou
+Ka pātai tāua
+Ka pātai tātou
+Ka pātai rāua
+Ka pātai rātou
+Ka pātai koe
+Ka pātai kōrua
+Ka pātai koutou
+I pānui au
+I pānui māua
+I pānui mātou
+I pānui tāua
+I pānui tātou
+I pānui rāua
+I pānui rātou
+I pānui koe
+I pānui kōrua
+I pānui koutou
+Kei te pānui au
+Kei te pānui māua
+Kei te pānui mātou
+Kei te pānui tāua
+Kei te pānui tātou
+Kei te pānui rāua
+Kei te pānui rātou
+Kei te pānui koe
+Kei te pānui kōrua
+Kei te pānui koutou
+Ka pānui au
+Ka pānui māua
+Ka pānui mātou
+Ka pānui tāua
+Ka pānui tātou
+Ka pānui rāua
+Ka pānui rātou
+Ka pānui koe
+Ka pānui kōrua
+Ka pānui koutou
+I ako au
+I ako māua
+I ako mātou
+I ako tāua
+I ako tātou
+I ako rāua
+I ako rātou
+I ako koe
+I ako kōrua
+I ako koutou
+Kei te ako au
+Kei te ako māua
+Kei te ako mātou
+Kei te ako tāua
+Kei te ako tātou
+Kei te ako rāua
+Kei te ako rātou
+Kei te ako koe
+Kei te ako kōrua
+Kei te ako koutou
+Ka ako au
+Ka ako māua
+Ka ako mātou
+Ka ako tāua
+Ka ako tātou
+Ka ako rāua
+Ka ako rātou
+Ka ako koe
+Ka ako kōrua
+Ka ako koutou

@@ -1,0 +1,240 @@
+I will go
+We (2 excl)will go
+We (3 excl) will go
+We (2 incl) will go
+We (3 incl) will go
+They (2 excl) will go
+They (3 excl) will go
+You (2 incl) will go
+You (3 incl) will go
+You will go
+I am going
+We (2 excl) are going
+We (3 excl) are going
+We (2 incl) are going
+We (3 incl) are going
+They (2 excl) are going
+They (3 excl) are going
+You are going
+You (2 incl) are going
+You (3 incl) are going
+I went
+We (2 excl) went
+We (3 excl) went
+We (2 incl) went
+We (3 incl) went
+They (2 excl) went
+They (3 excl) went
+You went
+You (2 incl) went
+You (3 incl) went
+I will make
+We (2 excl) will make
+We (3 excl) will make
+We (2 incl) will make
+We (3 incl) will make
+They (2 excl) will make
+They (3 excl) will make
+You will make
+You (2 incl) will make
+You (3 incl) will make
+I am making
+We (2 excl) are making
+We (3 excl) are making
+We (2 incl) are making
+We (3 incl) are making
+They (2 excl) are making
+They (3 excl) are making
+You are making
+You (2 incl) are making
+You (3 incl) are making
+I made
+We (2 excl) made
+We (3 excl) made
+We (2 incl) made
+We (3 incl) made
+They (2 excl) made
+They (3 excl) made
+You made
+You (2 incl) made
+You (3 incl) made
+I will see
+We (2 excl) will see
+We (3 excl) will see
+We (2 incl) will see
+We (3 incl) will see
+They (2 excl) will see
+They (3 excl) will see
+You will see
+You (2 incl) will see
+You (3 incl) will see
+I am seeing
+We (2 excl) are seeing
+We (3 excl) are seeing
+We (2 incl) are seeing
+We (3 incl) are seeing
+They (2 excl) are seeing
+They (3 excl) are seeing
+You are seeing
+You (2 incl) are seeing
+You (3 incl) are seeing
+I saw
+We (2 excl) saw
+We (3 excl) saw
+We (2 incl) saw
+We (3 incl) saw
+They (2 excl) saw
+They (3 excl) saw
+You saw
+You (2 incl) saw
+You (3 incl) saw
+I wanted
+We (2 excl) wanted
+We (3 excl) wanted
+We (2 incl) wanted
+We (3 incl) wanted
+They (2 excl) wanted
+They (3 excl) wanted
+You wanted
+You (2 incl) wanted
+You (3 incl) wanted
+I am wanting
+We (2 excl) are wanting
+We (3 excl) are wanting
+We (2 incl) are wanting
+We (3 incl) are wanting
+They (2 excl) are wanting
+They (3 excl) are wanting
+You are wanting
+You (2 incl) are wanting
+You (3 incl) are wanting
+I want
+We (2 excl) want
+We (3 excl) want
+We (2 incl) want
+We (3 incl) want
+They (2 excl) want
+They (3 excl) want
+You want
+You (2 incl) want
+You (3 incl) want
+I called
+We (2 excl) called
+We (3 excl) have called
+We (2 incl) have called
+We (3 incl) called
+They (2 excl) have called
+They (3 excl) called
+You called
+You (2 incl) called
+You (3 incl) called
+I am calling
+We (2 excl) are calling
+We (3 excl) are calling
+We (2 incl) are calling
+We (3 incl) are calling
+They (2 excl) are calling
+They (3 excl) are calling
+You are calling
+You (2 incl) are calling
+You (3 incl) are calling
+I will call
+We (2 excl) will call
+We (3 excl) will call
+We (2 incl) will call
+We (3 incl) will call
+They (2 excl) will call
+They (3 excl) will call
+You will call
+You (2 incl) will call
+You (3 incl) will call
+I asked
+We (2 excl) asked
+We (3 excl) asked
+We (2 incl) asked
+We (3 incl) asked
+They (2 excl) asked
+They (3 excl) asked
+You asked
+You (2 incl) asked
+You (3 incl) asked
+I am asking
+We (2 excl) are asking
+We (3 excl) are asking
+We (2 incl) are asking
+We (3 incl) are asking
+They (2 excl) are asking
+They (3 excl) are asking
+You are asking
+You (2 incl) are asking
+You (3 incl) are asking
+I will ask
+We (2 excl) will ask
+We (3 excl) will ask
+We (2 incl) will ask
+We (3 incl) will ask
+They (2 excl) will ask
+They (3 excl) will ask
+You will ask
+You (2 incl) will ask
+You (3 incl) will ask
+I have read
+We (2 excl) have read
+We (3 excl) have read
+We (2 incl) have read
+We (3 incl) have read
+They (2 excl) have read
+They (3 excl) have read
+You have read
+You (2 incl) have read
+You (3 incl) have read
+I am reading
+We (2 excl) are reading
+We (3 excl) are reading
+We (2 incl) are reading
+We (3 incl) are reading
+They (2 excl) are reading
+They (3 excl) are reading
+You are reading
+You (2 incl) are reading
+You (3 incl) are reading
+I will read
+We (2 excl) will read
+We (3 excl) will read
+We (2 incl) will read
+We (3 incl) will read
+They (2 excl) will read
+They (3 excl) will read
+You will read
+You (2 incl) will read
+You (3 incl) will read
+I have learnt
+We (2 excl) have learnt
+We (3 excl) have learnt
+We (2 incl) have learnt
+We (3 incl) have learnt
+They (2 excl) have learnt
+They (3 excl) have learnt
+You have learnt
+You (2 incl) have learnt
+You (3 incl) have learnt
+I am learning
+We (2 excl) are learning
+We (3 excl) are learning
+We (2 incl) are learning
+We (3 incl) are learning
+They (2 excl) are learning
+They (3 excl) are learning
+You are learning
+You (2 incl) are learning
+You (3 incl) are learning
+I will learn
+We (2 excl) will learn
+We (3 excl) will learn
+We (2 incl) will learn
+We (3 incl) will learn
+They (2 excl) will learn
+They (3 excl) will learn
+You will learn
+You (2 incl) will learn
+You (3 incl) will learn

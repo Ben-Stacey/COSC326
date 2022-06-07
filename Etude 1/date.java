@@ -10,12 +10,14 @@ public class date {
     static int counter = 0;
     static int index = 0;
     static int check = 0;
+
     static boolean yearLength = false;
     static boolean leapY = false;
     static boolean valid = true;
     static boolean dayErr = false;
     static boolean dateCheck = false;
     static boolean monthErr = false;
+    static boolean monthmonthErr = false;
     static boolean yearRange = true;
     static boolean sep = false;
     static ArrayList<String> dates = new ArrayList<String>();
@@ -23,6 +25,7 @@ public class date {
 
     /** Main method, this runs the program */
     public static void main(String[]args) {
+        System.out.println("");
         input();
     }
 
@@ -38,11 +41,11 @@ public class date {
                 counter++;
             }
         }catch(NumberFormatException e){
-            System.out.println("INVALID but unknown");
+            System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
             reset();
             input();
         }catch(StringIndexOutOfBoundsException e){
-            System.out.println("INVALID but unknown");
+            System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
             reset();
             input();
         }
@@ -51,11 +54,15 @@ public class date {
 
     /** starts the program */
     public static void start(){
-        reset();
-        for(int i = 0; i < counter; i++){
             reset();
-            checkSeperator(dates.get(i));
-        }
+            for(int i = 0; i < counter; i++){
+                reset();
+                try{
+                    checkSeperator(dates.get(i));
+                }catch(NumberFormatException e){
+                    System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
+                }
+            }
     }
 
     /** resets the variables for each time */
@@ -68,6 +75,7 @@ public class date {
         dayErr = false;
         dateCheck = false;
         monthErr = false;
+        monthmonthErr = false;
         yearRange = true;
         leapY = false;
         sep = false;
@@ -92,7 +100,7 @@ public class date {
                 sep = true;
             }
         }catch(StringIndexOutOfBoundsException e){
-            System.out.println("INVALID but unknown");
+            System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
         }
 
         for(int i = 0; i < date.length(); i++){
@@ -132,8 +140,12 @@ public class date {
 
         month = month.substring(1,month.length());
 
-        if(year.length() == 2){
-            plusYear();
+        try{
+            if(year.length() == 2){
+                plusYear();
+            }
+        }catch(NumberFormatException e){
+            System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
         }
 
         if(day.length() == 1){
@@ -168,10 +180,14 @@ public class date {
 
     /** adds 20 to the start of the date if length is 2 */
     public static void plusYear(){
-        if(Integer.parseInt(year) <= 50){
-            year = "20" + year;
-        }else if(Integer.parseInt(year) > 50){
-            year = "19" + year;
+        try{
+            if(Integer.parseInt(year) <= 49){
+                year = "20" + year;
+            }else if(Integer.parseInt(year) >= 50){
+                year = "19" + year;
+            }
+        }catch(NumberFormatException e){
+            System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
         }
     }
 
@@ -193,7 +209,7 @@ public class date {
             dayErr = true;
         }
 
-        if(!(Integer.parseInt(day) < 31 && Integer.parseInt(day) > 0)){
+        if(!(Integer.parseInt(day) < 32 && Integer.parseInt(day) > 0)){
             dayErr = true;
         }
     }
@@ -233,6 +249,7 @@ public class date {
             String high = monthList[i].toUpperCase();
             if(high.equals(month) || monthList[i].equals(month) || low.equals(month)){
                 month = month.toUpperCase();
+                System.out.println(month);
                 return true;
             }else if(isNumeric(month)){
                 monthConvert();
@@ -248,11 +265,11 @@ public class date {
             int numMonth = Integer.parseInt(month);
 
             if(numMonth == 0){
-                monthErr = true;
+                monthmonthErr = true;
             }
 
             if(!(numMonth <= 12 && numMonth >= 1)){
-                monthErr = true;
+                monthmonthErr = true;
             }
 
             if(month.charAt(0) == '0'){
@@ -268,7 +285,7 @@ public class date {
             month = month.toUpperCase(); 
 
         }catch(NumberFormatException e){
-            System.out.println("INVALID but unknown");
+            System.out.println(day + separator + month + separator + year + " - INVALID but unknown");
         }               
     }
 
@@ -288,32 +305,33 @@ public class date {
             System.out.println(day + separator + month + separator + year + " - INVALID: Day is wrong.");
             valid = false;
         }
-        if(!yearLength){
+        else if(!yearLength){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
             valid = false; 
         }
-        if(leapY){
-            System.out.println(day + separator + month + separator + year + " - INVALID: Year is wrong.");
+        else if(leapY){
+            System.out.println(day + separator + month + separator + year + " - INVALID: Day is wrong.");
             valid = false; 
         }
-        if(sepErr == 1 || sep == true){
+        else if(sepErr == 1 || sep == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Seperators are wrong.");
             valid = false;
         }
-        if(check > 2){
+        else if(check > 2){
             System.out.println(day + separator + month + separator + year + " - INVALID: More than 2 seperators.");
             valid = false;
         }
-        if(monthErr == true){
+        else if(monthErr == true || monthmonthErr == true){
             System.out.println(day + separator + month + separator + year + " - INVALID: Month is wrong.");
             valid = false;
         }
-        if(yearRange == false){
+        else if(yearRange == false){
             System.out.println(day + separator + month + separator + year + " - INVALID: Year is out of range.");
             valid = false;
         }
-        if(valid){
+        else if(valid){
             //if valid
+            month = month.toUpperCase();
             System.out.println("Valid date: " + day + " " + month + " " + year);
         }
         System.out.println("");
